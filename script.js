@@ -6,52 +6,98 @@ u -ufat*/
 
 
 
+
+const img = document.querySelector(".imagen_derecha");
+const textRigth = document.querySelector(".texto_derecho");
+const textTwo = document.querySelector(".text_dos");
+const copy = document.querySelector(".copiar");
+const textImput = document.querySelector('.text_input');
+const btnEncriptar = document.querySelector('.encriptar');
+const btnDesencriptar = document.querySelector('.desencriptar');
+const divDerecho = document.querySelector('.right')
+
+
+
 function encriptar(){
-    var texto = document.getElementById("inputTexto").value.toLowerCase()
+   
+
+    btnEncriptar.addEventListener('click', () => {
+
+        textImput.value = textImput.value.toLowerCase();
+        
+        let textEncriptado = textImput.value.replace(/e/img, "enter");      
+        textEncriptado     = textEncriptado.replace(/o/img, "ober");            
+        textEncriptado     = textEncriptado.replace(/i/img, "imes")
+        textEncriptado    = textEncriptado.replace(/a/img, "ai");
+        textEncriptado    = textEncriptado.replace(/u/img, "ufat");
+
+        img.style.display ="none";
+        textRigth.style.display ="none";       
+        textTwo.textContent = textEncriptado;
+
+        if(textTwo.value.trim() !== ''){
+            textTwo.style.display= 'block';
+        } else{
+            textTwo.style.display= 'none';
+        }
+
+        if(textTwo.value !== ""){
+            copy.style.display= 'block';
+        }else{
+            copy.style.display= 'none';
+        }
+    })
     
-    //i es para que afecte tanto a mayusculas como minisculas --- e E
-    // g este sirve para toda la linea u oracion
-    // m es para que afecte multiple lineas o parrafos
-    var txtCifrado = texto.replace(/enter/igm,"e");
-    var txtCifrado = txtCifrado.replace(/o/igm,"ober");
-    var txtCifrado = txtCifrado.replace(/i/igm,"imes");
-    var txtCifrado = txtCifrado.replace(/a/igm,"ai");
-    var txtCifrado = txtCifrado.replace(/u/igm,"ufat");
 
-
-    document.getElementById("imagenDerecha").style.display = "none";
-    document.getElementById("textoDerecho").style.display = "none";
-    document.getElementById("texto2").innerHTML = txtCifrado;
-    document.getElementById("copiar").style.display = "show";
-    document.getElementById("copiar").style.display = "inherit";
-}
-
-
-
-function desencriptar(){
-    var texto = document.getElementById("inputTexto").value.toLowerCase()
-    
-    //i es para que afecte tanto a mayusculas como minisculas --- e E
-    // g este sirve para toda la linea u oracion
-    // m es para que afecte multiple lineas o parrafos
-    var txtCifrado = texto.replace(/enter/igm,"e");
-    var txtCifrado = txtCifrado.replace(/ober/igm,"o");
-    var txtCifrado = txtCifrado.replace(/imes/igm,"i");
-    var txtCifrado = txtCifrado.replace(/ai/igm,"a");
-    var txtCifrado = txtCifrado.replace(/ufat/igm,"u");
-
-
-    document.getElementById("imagenDerecha").style.display = "none";
-    document.getElementById("textoDerecho").style.display = "none";
-    document.getElementById("texto2").innerHTML = txtCifrado;
-    document.getElementById("copiar").style.display = "show";
-    document.getElementById("copiar").style.display = "inherit";
-}
-
-
-function copiar(){
-    var contenido = document.querySelector("#texto2");
-    contenido.select()
-    document.execCommand("copy")
    
 }
+
+encriptar()
+
+function desencriptar(){
+
+    textImput.value.toLowerCase()   
+    btnDesencriptar.addEventListener('click', () => {
+
+    let  txtCifrado = textImput.value.replace(/enter/img,"e");
+         txtCifrado = txtCifrado.replace(/ober/img,"o");
+         txtCifrado = txtCifrado.replace(/imes/img,"i");
+         txtCifrado = txtCifrado.replace(/ai/img,"a");
+        txtCifrado = txtCifrado.replace(/ufat/img,"u");
+
+        img.style.display ="none";
+        textRigth.style.display ="none";
+
+        textTwo.textContent =txtCifrado;
+
+    })
+
+
+}
+
+desencriptar()
+
+function copiar(){   
+
+    copy.addEventListener('click', () =>{
+
+        textTwo.select();
+        document.execCommand("copy");
+        
+        const textoCopiado = "!Texto Copiado¡";
+        const avisoCopiado = document.createElement('span')
+        avisoCopiado.textContent = textoCopiado
+        divDerecho.appendChild(avisoCopiado);
+        setTimeout(()=>{
+          avisoCopiado.style.display  = 'none';
+        },2000)
+       
+        
+      
+    });   
+    
+    
+   
+}
+
+copiar()
