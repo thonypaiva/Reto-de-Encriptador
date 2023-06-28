@@ -242,7 +242,7 @@ footer{
 
 /*Media Querys*/
 
-@media screen and (min-width:320px)  {
+@media screen and (max-width:320px)  {
     body{
       display: block;
       width: 100%;
